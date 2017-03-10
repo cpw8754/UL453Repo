@@ -1,0 +1,7 @@
+sceneSetups:
+- path: Assets/Scenes/Testing_Terrain.unity
+  isLoaded: 1
+  isActive: 1
+- path: Assets/LeapMotionModules/InteractionEngine/Examples/Scenes/ExampleScene.unity
+  isLoaded: 0
+  isActive: 0
