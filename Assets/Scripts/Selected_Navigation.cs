@@ -10,6 +10,8 @@ public class Selected_Navigation : MonoBehaviour
 {
     private int c;
     [SerializeField]
+    private bool isSelected;
+    [SerializeField]
     GameObject selectionManager;
 
     public Text message;
@@ -18,6 +20,7 @@ public class Selected_Navigation : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
+        isSelected = false;
         nav = this.GetComponent<NavMeshAgent>();
 	}
 	
@@ -35,10 +38,11 @@ public class Selected_Navigation : MonoBehaviour
             message.text = "Entered the trigger!!!";
         }
 
-        if (other.transform.parent)
+        if (other.transform.parent && !isSelected)
         {
-            Debug.Log("HERE");
-            selectionManager.GetComponent<Selected>().selectedUnits.Add(other.gameObject);
+            isSelected = true;
+            selectionManager.GetComponent<Selected>().selectedUnits.Add(this.gameObject);
+            message.text = this.name + " has been added!!!";
         }
         
     }
@@ -49,16 +53,16 @@ public class Selected_Navigation : MonoBehaviour
 
         //Debug.Log("HEY IM HERE!!!");
 
-        if (other.transform.parent)
-        {
-            c++;
-            message.text = other.name + " " + other.tag + " " + c;
-        }
+        //if (other.transform.parent)
+        //{
+        //    c++;
+        //    message.text = other.name + " " + other.tag + " " + c;
+        //}
 
-        if (other.transform.parent && other.transform.parent.parent && other.transform.parent.parent.GetComponent<HandModel>())
-        {
-            message.text = other.name + " " + other.tag + " " + c;
-        }
+        //if (other.transform.parent && other.transform.parent.parent && other.transform.parent.parent.GetComponent<HandModel>())
+        //{
+        //    message.text = other.name + " " + other.tag + " " + c;
+        //}
 
         //if (other.transform.parent && other.transform.parent.parent &&
         //    other.transform.parent.parent.GetComponent<HandModel>())
